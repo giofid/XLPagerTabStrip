@@ -31,22 +31,21 @@ open class ButtonBarViewCell: UICollectionViewCell {
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         isAccessibilityElement = true
-        accessibilityTraits |= UIAccessibilityTraitButton
-        accessibilityTraits |= UIAccessibilityTraitHeader
+        accessibilityTraits.insert([.button, .header])
     }
-    
+
     open override var isSelected: Bool {
         get {
             return super.isSelected
         }
         set {
             super.isSelected = newValue
-            if (newValue) {
-                accessibilityTraits |= UIAccessibilityTraitSelected
+            if newValue {
+                accessibilityTraits.insert(.selected)
             } else {
-                accessibilityTraits &= ~UIAccessibilityTraitSelected
+                accessibilityTraits.remove(.selected)
             }
         }
     }
